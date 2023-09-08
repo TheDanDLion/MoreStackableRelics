@@ -1,4 +1,4 @@
-package blankMod.util;
+package moreStackableRelics.util;
 
 public class IDCheckDontTouchPls {
     public String DEFAULTID;
