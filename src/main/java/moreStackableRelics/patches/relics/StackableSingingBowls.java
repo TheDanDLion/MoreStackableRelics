@@ -25,6 +25,11 @@ public class StackableSingingBowls {
                     AbstractDungeon.player.increaseMaxHp(2, true);
                 }
             }
+        } else {
+            if (AbstractDungeon.player.hasRelic(SingingBowl.ID)) {
+                AbstractDungeon.player.getRelic(SingingBowl.ID).flash();
+                AbstractDungeon.player.increaseMaxHp(2, true);
+            }
         }
     }
 

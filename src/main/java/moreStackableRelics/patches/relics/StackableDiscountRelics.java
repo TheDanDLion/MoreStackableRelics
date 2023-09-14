@@ -144,9 +144,6 @@ public class StackableDiscountRelics {
                     courierCounter++;
             }
 
-            ModInitializer.logger.info("Courier counter: " + courierCounter);
-            ModInitializer.logger.info("Membership card counter: " + membershipCardCounter);
-
             if (ModInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
                     __instance.applyDiscount(0.8F, true);
@@ -182,33 +179,6 @@ public class StackableDiscountRelics {
                 }
             };
         }
-
-        // @SpireInsertPatch(
-        //     locator = Locator.class
-        // )
-        // public static void Postfix() {
-        //     if (AbstractDungeon.player.hasRelic(SmilingMask.ID)) {
-        //         ShopScreen.actualPurgeCost = 50;
-        //     }
-
-        //     float costMultiplier = 1.0F;
-        //     for (AbstractRelic relic : AbstractDungeon.player.relics) {
-        //         if (relic.relicId.equals(MembershipCard.ID) && ModInitializer.enableMemCardStacking)
-        //             costMultiplier *= 0.5F;
-        //         else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
-        //             costMultiplier *= 0.8F;
-        //     }
-        //     ModInitializer.logger.info("Cost multiplier: " + costMultiplier);
-
-        //     ShopScreen.actualPurgeCost = MathUtils.round(ShopScreen.purgeCost * costMultiplier);
-        // }
-
-        // private static class Locator extends SpireInsertLocator {
-        //     @Override
-        //     public int[] Locate(CtBehavior ctBehavior) throws Exception {
-        //         return LineFinder.findInOrder(ctBehavior, new Matcher.MethodCallMatcher(AbstractPlayer.class, "hasRelic"));
-        //     }
-        // }
     }
 
     @SpirePatch2(
@@ -228,9 +198,6 @@ public class StackableDiscountRelics {
                 else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
                     courierCounter++;
             }
-
-            ModInitializer.logger.info("Courier counter: " + courierCounter);
-            ModInitializer.logger.info("Membership card counter: " + membershipCardCounter);
 
             if (ModInitializer.enableMemCardStacking)
                 for (int i = 0; i < courierCounter; i++)
@@ -261,9 +228,6 @@ public class StackableDiscountRelics {
                     courierCounter++;
             }
 
-            ModInitializer.logger.info("Courier counter: " + courierCounter);
-            ModInitializer.logger.info("Membership card counter: " + membershipCardCounter);
-
             if (ModInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
                     retVal = ReflectionHacks.privateMethod(ShopScreen.class, "applyDiscountToRelic", Integer.class, Float.class).invoke(r, retVal, 0.8F);
@@ -291,9 +255,6 @@ public class StackableDiscountRelics {
                 else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
                     courierCounter++;
             }
-
-            ModInitializer.logger.info("Courier counter: " + courierCounter);
-            ModInitializer.logger.info("Membership card counter: " + membershipCardCounter);
 
             if (ModInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)

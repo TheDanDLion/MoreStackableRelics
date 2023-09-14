@@ -63,7 +63,7 @@ public class StackablePreservedInsects {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || numPreservedInsects == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || numPreservedInsects == 1 || !ModInitializer.enablePreservedInsectStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + Math.round((1.0F - getModifier()) * 100.0F) + DESCRIPTIONS[1];
         }
@@ -79,7 +79,12 @@ public class StackablePreservedInsects {
             localvars = {"m"}
         )
         public static void Insert(AbstractMonster m) {
+            if (!ModInitializer.enablePreservedInsectStacking)
+                return;
+
             m.currentHealth = (int) (m.maxHealth * getModifier());
+            if (m.currentHealth <= 0)
+                m.currentHealth = 1;
         }
 
         private static class Locator extends SpireInsertLocator {
@@ -103,10 +108,11 @@ public class StackablePreservedInsects {
             if (!ModInitializer.enablePreservedInsectStacking)
                 return;
             int count = -1; // scale is already accounted for first Preserved Insect so -1 will ignore first
-            if (!__instance.isPlayer && (AbstractDungeon.getCurrRoom()).eliteTrigger) {
-                for (AbstractRelic relic : AbstractDungeon.player.relics)
-                    if (relic.relicId.equals(PreservedInsect.ID))
-                        count++;
+            if (!__instance.isPlayer && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null && (AbstractDungeon.getCurrRoom()).eliteTrigger) {
+                if (AbstractDungeon.player != null)
+                    for (AbstractRelic relic : AbstractDungeon.player.relics)
+                        if (relic.relicId.equals(PreservedInsect.ID))
+                            count++;
                 for (int i = 0; i < count; i++)
                     scale[0] += 0.3F;
             }

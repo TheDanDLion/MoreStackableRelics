@@ -159,8 +159,17 @@ public class StackableGirya {
         )
         public static void Insert() {
             if (!ModInitializer.enableGiryaStacking) {
-                AbstractDungeon.player.getRelic(Girya.ID).flash();
-                (AbstractDungeon.player.getRelic(Girya.ID)).counter++;
+                if (AbstractDungeon.player.getRelic(Girya.ID).counter > 3) {
+                    AbstractDungeon.player.getRelic(Girya.ID).counter = 3;
+                    for (AbstractRelic relic : AbstractDungeon.player.relics)
+                        if (relic.relicId.equals(Girya.ID) && relic.counter < 3) {
+                            relic.counter++;
+                            relic.flash();
+                            break;
+                        }
+                } else {
+                    AbstractDungeon.player.getRelic(Girya.ID).flash();
+                }
                 return;
             }
             incrementAllGirya();

@@ -43,7 +43,7 @@ public class StackablePeacePipes {
     public static void countPeacePipes() {
         numPeacePipes = 0;
         for (AbstractRelic relic : AbstractDungeon.player.relics)
-            if (relic.equals(PeacePipe.ID))
+            if (relic.relicId.equals(PeacePipe.ID))
                 numPeacePipes++;
     }
 
