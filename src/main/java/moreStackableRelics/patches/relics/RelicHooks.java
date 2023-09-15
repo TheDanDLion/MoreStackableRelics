@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.relics.PaperFrog;
 import com.megacrit.cardcrawl.relics.PeacePipe;
 import com.megacrit.cardcrawl.relics.PreservedInsect;
+import com.megacrit.cardcrawl.relics.SmilingMask;
 import com.megacrit.cardcrawl.relics.StrangeSpoon;
 import com.megacrit.cardcrawl.relics.Torii;
 
@@ -54,6 +55,8 @@ public class RelicHooks {
                     StackableDreamCatchers.countDreamCatchers();
                 else if (targetID.equals(PreservedInsect.ID))
                     StackablePreservedInsects.countPreservedInsects();
+                else if (targetID.equals(SmilingMask.ID))
+                    StackableSmilingMasks.countMasks();
             }
             losingRelic = false;
         }

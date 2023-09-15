@@ -72,6 +72,20 @@
       "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Only one button will appear at campfires. Digging will provide 1 relic per shovel."
     ]
   },
+  "moreStackableRelics:SmilingMask": {
+    "NAME": "",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Reduce the cost of card removals by another 5 gold. NL Current Price: #b", " gold."
+    ]
+  },
+  "moreStackableRelics:SneckoEye": {
+    "NAME": "",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Rerolls the cost of cards again if that cards cost is greater than 0."
+    ]
+  },
   "moreStackableRelics:StrangeSpoon": {
     "NAME": "",
     "FLAVOR": "",

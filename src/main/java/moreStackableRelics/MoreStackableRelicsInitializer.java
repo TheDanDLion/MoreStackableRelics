@@ -18,6 +18,7 @@ import moreStackableRelics.patches.relics.StackablePaperFrogs;
 import moreStackableRelics.patches.relics.StackablePeacePipes;
 import moreStackableRelics.patches.relics.StackablePreservedInsects;
 import moreStackableRelics.patches.relics.StackableShovels;
+import moreStackableRelics.patches.relics.StackableSmilingMasks;
 import moreStackableRelics.patches.relics.StackableStrangeSpoons;
 import moreStackableRelics.patches.relics.StackableToriis;
 import moreStackableRelics.util.IDCheckDontTouchPls;
@@ -44,6 +45,7 @@ import com.megacrit.cardcrawl.relics.PaperCrane;
 import com.megacrit.cardcrawl.relics.PaperFrog;
 import com.megacrit.cardcrawl.relics.PeacePipe;
 import com.megacrit.cardcrawl.relics.PreservedInsect;
+import com.megacrit.cardcrawl.relics.SmilingMask;
 import com.megacrit.cardcrawl.relics.StrangeSpoon;
 import com.megacrit.cardcrawl.relics.Torii;
 
@@ -79,17 +81,24 @@ public class MoreStackableRelicsInitializer implements
     public static final String ENABLE_GIRYA_STACKING = "girya";
     public static final String ENABLE_GOLDEN_EYE_STACKING = "goldenEye";
     public static final String ENABLE_GOLDEN_IDOL_STACKING = "goldenIdol";
+    public static final String ENABLE_LIZARD_TAIL_STACKING = "lizardTailStacking";
+    public static final String ENABLE_MEAT_ON_THE_BONE_STACKING = "meatOnTheBone";
     public static final String ENABLE_ODD_MUSHROOM_STACKING = "oddMushroom";
+    public static final String ENABLE_OMAMORI_STACKING = "omamori";
     public static final String ENABLE_PAPER_CRANE_STACKING = "paperCrane";
     public static final String ENABLE_PAPER_FROG_STACKING = "paperFrog";
     public static final String ENABLE_PEACE_PIPE_STACKING = "peacePipe";
     public static final String ENABLE_PRESERVED_INSECT_STACKING = "preservedInsect";
     public static final String ENABLE_REGAL_PILLOW_STACKING = "regalPillow";
     public static final String ENABLE_SHOVEL_STACKING = "shovel";
+    public static final String ENABLE_SMILING_MASK_STACKING = "smilingMask";
+    public static final String ENABLE_SNECKO_EYE_STACKING = "sneckoEye";
     public static final String ENABLE_SINGING_BOWL_STACKING = "singingBowl";
     public static final String ENABLE_STRANGE_SPOON_STACKING = "strangeSpoon";
+    public static final String ENABLE_TINY_CHEST_STACKING = "tinyChest";
     public static final String ENABLE_TORII_STACKING = "torii";
     public static final String ENABLE_WHITE_BEAST_STACKING = "whiteBeast";
+    public static final String ENABLE_WING_BOOT_STACKING = "wingBoot";
     public static boolean enableGigaBoot = false;
     public static boolean enableBootStacking = true;
     public static boolean enableCableStacking = true;
@@ -101,17 +110,24 @@ public class MoreStackableRelicsInitializer implements
     public static boolean enableGiryaStacking = true;
     public static boolean enableGoldenEyeStacking = true;
     public static boolean enableGoldenIdolStacking = true;
+    public static boolean enableLizardTailStacking = true;
+    public static boolean enableMeatOnTheBoneStacking = true;
     public static boolean enableOddMushroomStacking = true;
+    public static boolean enableOmamoriStacking = true;
     public static boolean enablePaperCraneStacking = true;
     public static boolean enablePaperFrogStacking = true;
     public static boolean enablePeacePipeStacking = true;
     public static boolean enablePreservedInsectStacking = true;
     public static boolean enableRegalPillowStacking = true;
     public static boolean enableShovelStacking = true;
+    public static boolean enableSmilingMaskStacking = true;
+    public static boolean enableSneckoEyeStacking = true;
     public static boolean enableSingingBowlStacking = true;
     public static boolean enableStrangeSpoonStacking = true;
+    public static boolean enableTinyChestStacking = true;
     public static boolean enableToriiStacking = true;
     public static boolean enableWhiteBeastStacking = true;
+    public static boolean enableWingBootStacking = true;
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "More Stackable Relics";
@@ -145,17 +161,24 @@ public class MoreStackableRelicsInitializer implements
         moreStackableRelicsProperties.setProperty(ENABLE_GIRYA_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_GOLDEN_EYE_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_GOLDEN_IDOL_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_LIZARD_TAIL_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_MEAT_ON_THE_BONE_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_ODD_MUSHROOM_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_OMAMORI_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_PAPER_CRANE_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_PAPER_FROG_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_PEACE_PIPE_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_PRESERVED_INSECT_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_REGAL_PILLOW_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_SHOVEL_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_SMILING_MASK_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_SNECKO_EYE_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_SINGING_BOWL_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_STRANGE_SPOON_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_TINY_CHEST_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_TORII_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_WHITE_BEAST_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_WING_BOOT_STACKING, "TRUE");
 
         try {
             SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig", moreStackableRelicsProperties); // ...right here
@@ -171,17 +194,24 @@ public class MoreStackableRelicsInitializer implements
             enableGiryaStacking = config.getBool(ENABLE_GIRYA_STACKING);
             enableGoldenEyeStacking = config.getBool(ENABLE_GOLDEN_EYE_STACKING);
             enableGoldenIdolStacking = config.getBool(ENABLE_GOLDEN_IDOL_STACKING);
+            enableLizardTailStacking = config.getBool(ENABLE_LIZARD_TAIL_STACKING);
+            enableMeatOnTheBoneStacking = config.getBool(ENABLE_MEAT_ON_THE_BONE_STACKING);
             enableOddMushroomStacking = config.getBool(ENABLE_ODD_MUSHROOM_STACKING);
+            enableOmamoriStacking = config.getBool(ENABLE_OMAMORI_STACKING);
             enablePaperCraneStacking = config.getBool(ENABLE_PAPER_CRANE_STACKING);
             enablePaperFrogStacking = config.getBool(ENABLE_PAPER_FROG_STACKING);
             enablePeacePipeStacking = config.getBool(ENABLE_PEACE_PIPE_STACKING);
             enablePreservedInsectStacking = config.getBool(ENABLE_PRESERVED_INSECT_STACKING);
             enableRegalPillowStacking = config.getBool(ENABLE_REGAL_PILLOW_STACKING);
             enableShovelStacking = config.getBool(ENABLE_SHOVEL_STACKING);
+            enableSmilingMaskStacking = config.getBool(ENABLE_SMILING_MASK_STACKING);
+            enableSneckoEyeStacking = config.getBool(ENABLE_SNECKO_EYE_STACKING);
             enableSingingBowlStacking = config.getBool(ENABLE_SINGING_BOWL_STACKING);
             enableStrangeSpoonStacking = config.getBool(ENABLE_STRANGE_SPOON_STACKING);
+            enableTinyChestStacking = config.getBool(ENABLE_TINY_CHEST_STACKING);
             enableToriiStacking = config.getBool(ENABLE_TORII_STACKING);
             enableWhiteBeastStacking = config.getBool(ENABLE_WHITE_BEAST_STACKING);
+            enableWingBootStacking = config.getBool(ENABLE_WING_BOOT_STACKING);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -271,7 +301,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableBootStackingButton = new ModLabeledToggleButton("Enable Boot Stacking",
+        ModLabeledToggleButton enableBootStackingButton = new ModLabeledToggleButton("Boot Stacking",
                 350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableBootStacking,
                 settingsPanel,
@@ -287,7 +317,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableCaliperStackingButton = new ModLabeledToggleButton("Enable Caliper Stacking",
+        ModLabeledToggleButton enableCaliperStackingButton = new ModLabeledToggleButton("Caliper Stacking",
                 350.0f, 650.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableCaliperStacking,
                 settingsPanel,
@@ -303,7 +333,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableChampBeltStackingButton = new ModLabeledToggleButton("Enable Champion Belt Stacking",
+        ModLabeledToggleButton enableChampBeltStackingButton = new ModLabeledToggleButton("Champion Belt Stacking",
                 350.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableChampBeltStacking,
                 settingsPanel,
@@ -318,7 +348,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableCourierStackingButton = new ModLabeledToggleButton("Enable Courier Stacking",
+        ModLabeledToggleButton enableCourierStackingButton = new ModLabeledToggleButton("Courier Stacking",
                 350.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableCourierStacking,
                 settingsPanel,
@@ -333,7 +363,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableDreamCatcherStackingButton = new ModLabeledToggleButton("Enable Dream Catcher Stacking",
+        ModLabeledToggleButton enableDreamCatcherStackingButton = new ModLabeledToggleButton("Dream Catcher Stacking",
                 350.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableDreamCatcherStacking,
                 settingsPanel,
@@ -342,14 +372,14 @@ public class MoreStackableRelicsInitializer implements
             enableDreamCatcherStacking = button.enabled;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
-                        moreStackableRelicsProperties);
+                    moreStackableRelicsProperties);
                 config.setBool(ENABLE_DREAM_CATCHER_STACKING, enableDreamCatcherStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableGiryaStackingButton = new ModLabeledToggleButton("Enable Girya Stacking",
+        ModLabeledToggleButton enableGiryaStackingButton = new ModLabeledToggleButton("Girya Stacking",
                 350.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableGiryaStacking,
                 settingsPanel,
@@ -358,14 +388,14 @@ public class MoreStackableRelicsInitializer implements
             enableGiryaStacking = button.enabled;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
-                        moreStackableRelicsProperties);
+                    moreStackableRelicsProperties);
                 config.setBool(ENABLE_GIRYA_STACKING, enableGiryaStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableCableStackingButton = new ModLabeledToggleButton("Enable Gold Plated Cables Stacking",
+        ModLabeledToggleButton enableCableStackingButton = new ModLabeledToggleButton("Gold Plated Cables Stacking",
                 350.0f, 400.0f, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableCableStacking,
                 settingsPanel,
@@ -381,7 +411,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableGoldenEyeStackingButton = new ModLabeledToggleButton("Enable Golden Eye Stacking",
+        ModLabeledToggleButton enableGoldenEyeStackingButton = new ModLabeledToggleButton("Golden Eye Stacking",
                 350.0F, 350.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableGoldenEyeStacking,
                 settingsPanel,
@@ -390,14 +420,14 @@ public class MoreStackableRelicsInitializer implements
             enableGoldenEyeStacking = button.enabled;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
-                        moreStackableRelicsProperties);
+                    moreStackableRelicsProperties);
                 config.setBool(ENABLE_GOLDEN_EYE_STACKING, enableGoldenEyeStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableGoldenIdolStackingButton = new ModLabeledToggleButton("Enable Golden Idol Stacking",
+        ModLabeledToggleButton enableGoldenIdolStackingButton = new ModLabeledToggleButton("Golden Idol Stacking",
                 350.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableGoldenIdolStacking,
                 settingsPanel,
@@ -406,15 +436,47 @@ public class MoreStackableRelicsInitializer implements
             enableGoldenIdolStacking = button.enabled;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
-                        moreStackableRelicsProperties);
+                    moreStackableRelicsProperties);
                 config.setBool(ENABLE_GOLDEN_IDOL_STACKING, enableGoldenIdolStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableMemCardStackingButton = new ModLabeledToggleButton("Enable Membership Card Stacking",
+        ModLabeledToggleButton enableLizardTailStackingButton = new ModLabeledToggleButton("Lizard Tail Stacking",
                 350.0F, 250.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableLizardTailStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableLizardTailStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                    moreStackableRelicsProperties);
+                config.setBool(ENABLE_LIZARD_TAIL_STACKING, enableLizardTailStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableMeatOnTheBoneStackingButton = new ModLabeledToggleButton("Meat on the Bone Stacking",
+                350.0F, 200.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableMeatOnTheBoneStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableMeatOnTheBoneStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                    moreStackableRelicsProperties);
+                config.setBool(ENABLE_MEAT_ON_THE_BONE_STACKING, enableMeatOnTheBoneStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableMemCardStackingButton = new ModLabeledToggleButton("Membership Card Stacking",
+                725.0F, 700.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableMemCardStacking,
                 settingsPanel,
                 (label) -> {},
@@ -428,8 +490,8 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableOddMushroomStackingButton = new ModLabeledToggleButton("Enable Odd Mushroom Stacking",
-                350.0F, 200.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableOddMushroomStackingButton = new ModLabeledToggleButton("Odd Mushroom Stacking",
+                725.0F, 650.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableOddMushroomStacking,
                 settingsPanel,
                 (label) -> {},
@@ -444,8 +506,24 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enablePaperCraneStackingButton = new ModLabeledToggleButton("Enable Paper Crane Stacking",
-                1000.0F, 700.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableOmamoriStackingButton = new ModLabeledToggleButton("Omamori Stacking",
+                725.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableOmamoriStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableOmamoriStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                    moreStackableRelicsProperties);
+                config.setBool(ENABLE_OMAMORI_STACKING, enableOmamoriStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enablePaperCraneStackingButton = new ModLabeledToggleButton("Paper Crane Stacking",
+                725.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enablePaperCraneStacking,
                 settingsPanel,
                 (label) -> {},
@@ -453,21 +531,20 @@ public class MoreStackableRelicsInitializer implements
             enablePaperCraneStacking = button.enabled;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
-                        moreStackableRelicsProperties);
+                    moreStackableRelicsProperties);
                 config.setBool(ENABLE_PAPER_CRANE_STACKING, enablePaperCraneStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enablePaperFrogStackingButton = new ModLabeledToggleButton("Enable Paper Frog Stacking",
-                1000.0F, 650.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enablePaperFrogStackingButton = new ModLabeledToggleButton("Paper Frog Stacking",
+                725.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enablePaperFrogStacking,
                 settingsPanel,
                 (label) -> {},
                 (button) -> {
             enablePaperFrogStacking = button.enabled;
-            StackableShovels.buttonAdded = false;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
                     moreStackableRelicsProperties);
@@ -477,8 +554,8 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enablePeacePipeStackingButton = new ModLabeledToggleButton("Enable Peace Pipe Stacking",
-                1000.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enablePeacePipeStackingButton = new ModLabeledToggleButton("Peace Pipe Stacking",
+                725.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enablePeacePipeStacking,
                 settingsPanel,
                 (label) -> {},
@@ -493,8 +570,8 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enablePreservedInsectStackingButton = new ModLabeledToggleButton("Enable Preserved Insect Stacking",
-                1000.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enablePreservedInsectStackingButton = new ModLabeledToggleButton("Preserved Insect Stacking",
+                725.0F, 400.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enablePreservedInsectStacking,
                 settingsPanel,
                 (label) -> {},
@@ -509,8 +586,8 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableRegalPillowStackingButton = new ModLabeledToggleButton("Enable Regal Pillow Stacking",
-                1000.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableRegalPillowStackingButton = new ModLabeledToggleButton("Regal Pillow Stacking",
+                725.0F, 350.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableRegalPillowStacking,
                 settingsPanel,
                 (label) -> {},
@@ -525,8 +602,8 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableShovelStackingButton = new ModLabeledToggleButton("Enable Shovel Stacking",
-                1000.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableShovelStackingButton = new ModLabeledToggleButton("Shovel Stacking",
+                725.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableShovelStacking,
                 settingsPanel,
                 (label) -> {},
@@ -543,13 +620,12 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableSingingBowlStackingButton = new ModLabeledToggleButton("Enable Singing Bowl Stacking",
-                1000.0F, 400.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                725.0F, 250.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableSingingBowlStacking,
                 settingsPanel,
                 (label) -> {},
                 (button) -> {
             enableSingingBowlStacking = button.enabled;
-            StackableShovels.buttonAdded = false;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
                     moreStackableRelicsProperties);
@@ -559,14 +635,45 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableStrangeSpoonStackingButton = new ModLabeledToggleButton("Enable Strange Spoon Stacking",
-                1000.0F, 350.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableSmilingMaskStackingButton = new ModLabeledToggleButton("Smiling Mask Stacking",
+                725.0F, 200.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableSmilingMaskStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableSmilingMaskStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                        moreStackableRelicsProperties);
+                config.setBool(ENABLE_SMILING_MASK_STACKING, enableSmilingMaskStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableSneckoEyeStackingButton = new ModLabeledToggleButton("Snecko Eye Stacking",
+                1100.0F, 700.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableSneckoEyeStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableSneckoEyeStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                        moreStackableRelicsProperties);
+                config.setBool(ENABLE_SNECKO_EYE_STACKING, enableSneckoEyeStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableStrangeSpoonStackingButton = new ModLabeledToggleButton("Strange Spoon Stacking",
+                1100.0F, 650.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableStrangeSpoonStacking,
                 settingsPanel,
                 (label) -> {},
                 (button) -> {
             enableStrangeSpoonStacking = button.enabled;
-            StackableShovels.buttonAdded = false;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
                     moreStackableRelicsProperties);
@@ -576,14 +683,29 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableToriiStackingButton = new ModLabeledToggleButton("Enable Torii Stacking",
-                1000.0F, 300.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+        ModLabeledToggleButton enableTinyChestStackingButton = new ModLabeledToggleButton("Tiny Chest Stacking",
+                1100.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableTinyChestStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableTinyChestStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                        moreStackableRelicsProperties);
+                config.setBool(ENABLE_TINY_CHEST_STACKING, enableTinyChestStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableToriiStackingButton = new ModLabeledToggleButton("Torii Stacking",
+                1100.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableToriiStacking,
                 settingsPanel,
                 (label) -> {},
                 (button) -> {
             enableToriiStacking = button.enabled;
-            StackableShovels.buttonAdded = false;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
                     moreStackableRelicsProperties);
@@ -594,17 +716,32 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableWhiteBeastStackingButton = new ModLabeledToggleButton("Enable White Beast Stacking",
-                1000.0F, 250.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                1100.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableWhiteBeastStacking,
                 settingsPanel,
                 (label) -> {},
                 (button) -> {
             enableWhiteBeastStacking = button.enabled;
-            StackableShovels.buttonAdded = false;
             try {
                 SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
                     moreStackableRelicsProperties);
                 config.setBool(ENABLE_WHITE_BEAST_STACKING, enableWhiteBeastStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableWingBootStackingButton = new ModLabeledToggleButton("Winged Boots Stacking",
+                1100.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableWingBootStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableWingBootStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                        moreStackableRelicsProperties);
+                config.setBool(ENABLE_WING_BOOT_STACKING, enableWingBootStacking);
                 config.save();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -622,7 +759,10 @@ public class MoreStackableRelicsInitializer implements
         settingsPanel.addUIElement(enableGiryaStackingButton);
         settingsPanel.addUIElement(enableGoldenEyeStackingButton);
         settingsPanel.addUIElement(enableGoldenIdolStackingButton);
+        settingsPanel.addUIElement(enableLizardTailStackingButton);
+        settingsPanel.addUIElement(enableMeatOnTheBoneStackingButton);
         settingsPanel.addUIElement(enableOddMushroomStackingButton);
+        settingsPanel.addUIElement(enableOmamoriStackingButton);
         settingsPanel.addUIElement(enablePaperCraneStackingButton);
         settingsPanel.addUIElement(enablePaperFrogStackingButton);
         settingsPanel.addUIElement(enablePeacePipeStackingButton);
@@ -630,9 +770,13 @@ public class MoreStackableRelicsInitializer implements
         settingsPanel.addUIElement(enableRegalPillowStackingButton);
         settingsPanel.addUIElement(enableShovelStackingButton);
         settingsPanel.addUIElement(enableSingingBowlStackingButton);
+        settingsPanel.addUIElement(enableSmilingMaskStackingButton);
+        settingsPanel.addUIElement(enableSneckoEyeStackingButton);
         settingsPanel.addUIElement(enableStrangeSpoonStackingButton);
+        settingsPanel.addUIElement(enableTinyChestStackingButton);
         settingsPanel.addUIElement(enableToriiStackingButton);
         settingsPanel.addUIElement(enableWhiteBeastStackingButton);
+        settingsPanel.addUIElement(enableWingBootStackingButton);
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
@@ -676,6 +820,8 @@ public class MoreStackableRelicsInitializer implements
             StackableDreamCatchers.numDreamCatchers++;
         else if (relic.relicId.equals(PreservedInsect.ID))
             StackablePreservedInsects.incPreservedInsects(relic);
+        else if (relic.relicId.equals(SmilingMask.ID))
+            StackableSmilingMasks.incMasks(relic);
     }
 
     @Override
@@ -692,6 +838,7 @@ public class MoreStackableRelicsInitializer implements
         StackableDiscountRelics.numMembershipCard = 0;
         StackableDiscountRelics.numCourier = 0;
         StackablePreservedInsects.numPreservedInsects = 0;
+        StackableSmilingMasks.numMasks = 0;
         StackableShovels.buttonAdded = false;
     }
     // =============== /RELIC MGMT/ =================
