@@ -23,18 +23,18 @@ import com.megacrit.cardcrawl.vfx.campfire.CampfireLiftEffect;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableGirya {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("Girya"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("Girya"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static boolean buttonAdded = false;
 
     public static boolean isButtonAdded(Girya girya) {
         boolean val = buttonAdded;
-        if (ModInitializer.enableGiryaStacking) {
+        if (MoreStackableRelicsInitializer.enableGiryaStacking) {
             if (girya.counter > 2)
                 return true;
             buttonAdded = true;
@@ -43,7 +43,7 @@ public class StackableGirya {
     }
 
     public static void incrementAllGirya() {
-        if (!ModInitializer.enableGiryaStacking)
+        if (!MoreStackableRelicsInitializer.enableGiryaStacking)
             return;
         boolean first = true;
         for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -60,7 +60,7 @@ public class StackableGirya {
     }
 
     public static boolean getGiryaStacking() {
-        return ModInitializer.enableGiryaStacking;
+        return MoreStackableRelicsInitializer.enableGiryaStacking;
     }
 
     @SpirePatch2(
@@ -69,7 +69,7 @@ public class StackableGirya {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableGiryaStacking)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableGiryaStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -115,7 +115,7 @@ public class StackableGirya {
             locator = Locator.class
         )
         public static void Insert(ArrayList<AbstractCampfireOption> ___buttons) {
-            if (ModInitializer.enableGiryaStacking) {
+            if (MoreStackableRelicsInitializer.enableGiryaStacking) {
                 if (AbstractDungeon.player.hasRelic(Girya.ID)) {
                     for (AbstractCampfireOption option : ___buttons)
                         if (option instanceof LiftOption)
@@ -158,7 +158,7 @@ public class StackableGirya {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableGiryaStacking) {
+            if (!MoreStackableRelicsInitializer.enableGiryaStacking) {
                 if (AbstractDungeon.player.getRelic(Girya.ID).counter > 3) {
                     AbstractDungeon.player.getRelic(Girya.ID).counter = 3;
                     for (AbstractRelic relic : AbstractDungeon.player.relics)

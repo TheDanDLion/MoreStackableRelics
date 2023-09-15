@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.relics.RegalPillow;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 
 import javassist.CtBehavior;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableRegalPillows { // TODO: update campfire text but not really that important
 
@@ -24,7 +24,7 @@ public class StackableRegalPillows { // TODO: update campfire text but not reall
     )
     public static class ApplyAllRegalPillowsPatch {
         public static void Postfix(@ByRef int[] ___healAmount) {
-            if (!ModInitializer.enableRegalPillowStacking)
+            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -46,7 +46,7 @@ public class StackableRegalPillows { // TODO: update campfire text but not reall
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableRegalPillowStacking)
+            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)

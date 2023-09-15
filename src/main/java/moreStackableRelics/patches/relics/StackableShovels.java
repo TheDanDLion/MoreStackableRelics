@@ -18,18 +18,18 @@ import com.megacrit.cardcrawl.vfx.campfire.CampfireDigEffect;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableShovels {
 
-    private static final RelicStrings RELIC_STIRNGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("Shovel"));
+    private static final RelicStrings RELIC_STIRNGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("Shovel"));
     private static final String[] DESCRIPTIONS = RELIC_STIRNGS.DESCRIPTIONS;
 
     public static boolean buttonAdded = false;
 
     public static boolean isButtonAdded() {
         boolean val = buttonAdded;
-        if (ModInitializer.enableShovelStacking)
+        if (MoreStackableRelicsInitializer.enableShovelStacking)
             buttonAdded = true;
         return val;
     }
@@ -40,7 +40,7 @@ public class StackableShovels {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableShovelStacking)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableShovelStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -86,7 +86,7 @@ public class StackableShovels {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableShovelStacking)
+            if (!MoreStackableRelicsInitializer.enableShovelStacking)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)

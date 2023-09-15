@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 
 import javassist.CtBehavior;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableDreamCatchers {
 
@@ -53,9 +53,9 @@ public class StackableDreamCatchers {
             locator = Locator.class
         )
         public static void Insert(AbstractRoom __instance) {
-            if (!ModInitializer.enableDreamCatcherStacking || counter == 0 || !inChain || choosing || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD || !(__instance instanceof RestRoom))
+            if (!MoreStackableRelicsInitializer.enableDreamCatcherStacking || counter == 0 || !inChain || choosing || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD || !(__instance instanceof RestRoom))
                 return;
-            ModInitializer.logger.info("Counter: " + counter);
+            MoreStackableRelicsInitializer.logger.info("Counter: " + counter);
             counter--;
             AbstractDungeon.overlayMenu.proceedButton.hideInstantly();
             ArrayList<AbstractCard> rewardCards = AbstractDungeon.getRewardCards();
@@ -85,7 +85,7 @@ public class StackableDreamCatchers {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableDreamCatcherStacking)
+            if (!MoreStackableRelicsInitializer.enableDreamCatcherStacking)
                 return;
             inChain = true;
             counter = numDreamCatchers - 1;

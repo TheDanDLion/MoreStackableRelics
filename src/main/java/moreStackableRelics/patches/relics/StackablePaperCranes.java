@@ -11,11 +11,11 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PaperCrane;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackablePaperCranes {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("PaperCrane"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("PaperCrane"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numCranes = 0;
@@ -58,7 +58,7 @@ public class StackablePaperCranes {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enablePaperCraneStacking || numCranes == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperCraneStacking || numCranes == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getCurrentReduction() + DESCRIPTIONS[1];
         }
@@ -70,7 +70,7 @@ public class StackablePaperCranes {
     )
     public static class AtDamageGivePatch {
         public static float Postfix(float __result, DamageInfo.DamageType type) {
-            if (!ModInitializer.enablePaperCraneStacking)
+            if (!MoreStackableRelicsInitializer.enablePaperCraneStacking)
                 return __result;
             if (type == DamageType.NORMAL) {
                 boolean first = true;

@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.ui.buttons.SingingBowlButton;
 
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 @SpirePatch2(
     clz = SingingBowlButton.class,
@@ -18,7 +18,7 @@ import moreStackableRelics.ModInitializer;
 public class StackableSingingBowls {
 
     public static void applySingingBowls() {
-        if (ModInitializer.enableSingingBowlStacking) {
+        if (MoreStackableRelicsInitializer.enableSingingBowlStacking) {
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
                 if (relic.relicId.equals(SingingBowl.ID)) {
                     relic.flash();

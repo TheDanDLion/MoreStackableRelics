@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.ChampionsBelt;
 
 import javassist.CtBehavior;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 @SpirePatch2(
     clz = ApplyPowerAction.class,
@@ -25,7 +25,7 @@ public class StackableChampionsBelts {
         locator = Locator.class
     )
     public static void Insert(ApplyPowerAction __instance, AbstractPower ___powerToApply) {
-        if (!ModInitializer.enableChampBeltStacking)
+        if (!MoreStackableRelicsInitializer.enableChampBeltStacking)
             return;
         if (__instance.source != null && __instance.source.isPlayer && __instance.target != __instance.source
             && ___powerToApply.ID.equals(VulnerablePower.POWER_ID) && !__instance.target.hasPower(ArtifactPower.POWER_ID)) {

@@ -11,11 +11,11 @@ import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Torii;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableToriis {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("Torii"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("Torii"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numToriis = 0;
@@ -54,7 +54,7 @@ public class StackableToriis {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableToriiStacking || numToriis == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableToriiStacking || numToriis == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + (numToriis * 5);
         }
@@ -66,7 +66,7 @@ public class StackableToriis {
     )
     public static class ToriiBlockPatch {
         public static int Postfix(int __result, DamageInfo info, int damageAmount) {
-            if (ModInitializer.enableToriiStacking && info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 1 && damageAmount <= 5 * numToriis
+            if (MoreStackableRelicsInitializer.enableToriiStacking && info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 1 && damageAmount <= 5 * numToriis
                 && AbstractDungeon.player.hasRelic(Torii.ID)) {
                 boolean first = __result == 5;
                 for (AbstractRelic relic : AbstractDungeon.player.relics)

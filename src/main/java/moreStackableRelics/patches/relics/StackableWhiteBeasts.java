@@ -16,11 +16,11 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import javassist.CtBehavior;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableWhiteBeasts {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("WhiteBeast"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("WhiteBeast"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     @SpirePatch2(
@@ -29,7 +29,7 @@ public class StackableWhiteBeasts {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableWhiteBeastStacking)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableWhiteBeastStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -45,7 +45,7 @@ public class StackableWhiteBeasts {
             locator = Locator.class
         )
         public static void Insert(AbstractRoom __instance) {
-            if (!ModInitializer.enableWhiteBeastStacking)
+            if (!MoreStackableRelicsInitializer.enableWhiteBeastStacking)
                 return;
             int count = -1; // set count to -1 because 1 potion is made already, so first White Beast is already accounted for
             for (AbstractRelic relic : AbstractDungeon.player.relics)

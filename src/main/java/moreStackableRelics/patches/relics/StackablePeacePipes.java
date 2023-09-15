@@ -26,11 +26,11 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackablePeacePipes {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("PeacePipe"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("PeacePipe"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     private static final UIStrings UI_STRINGS = CardCrawlGame.languagePack.getUIString("HandCardSelectScreen");
@@ -49,7 +49,7 @@ public class StackablePeacePipes {
 
     public static boolean isButtonAdded() {
         boolean val = buttonAdded;
-        if (ModInitializer.enablePeacePipeStacking)
+        if (MoreStackableRelicsInitializer.enablePeacePipeStacking)
             buttonAdded = true;
         return val;
     }
@@ -60,7 +60,7 @@ public class StackablePeacePipes {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enablePeacePipeStacking)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePeacePipeStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -106,7 +106,7 @@ public class StackablePeacePipes {
             locator = Locator.class
         )
         public static SpireReturn<Void> Insert() {
-            if (!ModInitializer.enablePeacePipeStacking)
+            if (!MoreStackableRelicsInitializer.enablePeacePipeStacking)
                 return SpireReturn.Continue();
             AbstractDungeon.gridSelectScreen.anyNumber = true;
             AbstractDungeon.gridSelectScreen.open(
@@ -125,7 +125,7 @@ public class StackablePeacePipes {
             locator = Locator2.class
         )
         public static void Insert2() {
-            if (!ModInitializer.enablePeacePipeStacking)
+            if (!MoreStackableRelicsInitializer.enablePeacePipeStacking)
                 return;
             for (int i = 0; i < AbstractDungeon.gridSelectScreen.selectedCards.size(); i++) {
                 AbstractCard card = AbstractDungeon.gridSelectScreen.selectedCards.get(i);

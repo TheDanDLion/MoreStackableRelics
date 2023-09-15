@@ -8,11 +8,11 @@ import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.Boot;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableBoots {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("Boot"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("Boot"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numBoots = 0;
@@ -48,7 +48,7 @@ public class StackableBoots {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableBootStacking || numBoots == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableBootStacking || numBoots == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + (numBoots * 5);
         }
@@ -60,9 +60,10 @@ public class StackableBoots {
     )
     public static class BootDamagePatch {
         public static int Postfix(int __result, Boot __instance, DamageInfo info, int damageAmount) {
-            if (!ModInitializer.enableBootStacking)
+            if (!MoreStackableRelicsInitializer.enableBootStacking)
                 return __result;
-            if (info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 0 && damageAmount < 5 * numBoots) {
+            int threshold = MoreStackableRelicsInitializer.enableGigaBoot ? 5 * numBoots : 5;
+            if (info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 0 && damageAmount < threshold) {
                 __result = (5 * numBoots);
             }
             return __result;

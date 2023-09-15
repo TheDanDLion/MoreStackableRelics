@@ -22,11 +22,11 @@ import com.megacrit.cardcrawl.shop.StoreRelic;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableDiscountRelics {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("DiscountRelics"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("DiscountRelics"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numCourier = 0;
@@ -88,7 +88,7 @@ public class StackableDiscountRelics {
     }
 
     public static int getPurgeCost(int purgeCost) { // TODO: verify calculation
-        if (ModInitializer.enableMemCardStacking) {
+        if (MoreStackableRelicsInitializer.enableMemCardStacking) {
             float multiplier = 1.0f;
             for (int i = 0; i < numMembershipCard; i++)
                 multiplier *= 0.5F;
@@ -111,7 +111,7 @@ public class StackableDiscountRelics {
     )
     public static class AmendCourierDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableCourierStacking || numCourier == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableCourierStacking || numCourier == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getTotalDiscount() + DESCRIPTIONS[2];
         }
@@ -123,7 +123,7 @@ public class StackableDiscountRelics {
     )
     public static class AmendMembershipCardDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableMemCardStacking || numMembershipCard == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableMemCardStacking || numMembershipCard == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[1] + getTotalDiscount() + DESCRIPTIONS[2];
         }
@@ -145,16 +145,16 @@ public class StackableDiscountRelics {
             int membershipCardCounter = -1;
 
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(MembershipCard.ID) && ModInitializer.enableMemCardStacking)
+                if (relic.relicId.equals(MembershipCard.ID) && MoreStackableRelicsInitializer.enableMemCardStacking)
                     membershipCardCounter++;
-                else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
+                else if (relic.relicId.equals(Courier.ID) && MoreStackableRelicsInitializer.enableCourierStacking)
                     courierCounter++;
             }
 
-            if (ModInitializer.enableCourierStacking)
+            if (MoreStackableRelicsInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
                     __instance.applyDiscount(0.8F, true);
-            if (ModInitializer.enableMemCardStacking)
+            if (MoreStackableRelicsInitializer.enableMemCardStacking)
                 for (int i = 0; i < membershipCardCounter; i++)
                     __instance.applyDiscount(0.5F, true);
         }
@@ -203,17 +203,17 @@ public class StackableDiscountRelics {
             int membershipCardCounter = -1;
 
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(MembershipCard.ID) && ModInitializer.enableMemCardStacking)
+                if (relic.relicId.equals(MembershipCard.ID) && MoreStackableRelicsInitializer.enableMemCardStacking)
                     membershipCardCounter++;
-                else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
+                else if (relic.relicId.equals(Courier.ID) && MoreStackableRelicsInitializer.enableCourierStacking)
                     courierCounter++;
             }
 
             try {
-                if (ModInitializer.enableMemCardStacking)
+                if (MoreStackableRelicsInitializer.enableMemCardStacking)
                     for (int i = 0; i < courierCounter; i++)
                         retVal = (int)(retVal * 0.8F);
-                if (ModInitializer.enableCourierStacking)
+                if (MoreStackableRelicsInitializer.enableCourierStacking)
                     for (int i = 0; i < membershipCardCounter; i++)
                         retVal = (int)(retVal * 0.5F);
             } catch (NullPointerException e) {
@@ -238,16 +238,16 @@ public class StackableDiscountRelics {
             int membershipCardCounter = -1;
 
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(MembershipCard.ID) && ModInitializer.enableMemCardStacking)
+                if (relic.relicId.equals(MembershipCard.ID) && MoreStackableRelicsInitializer.enableMemCardStacking)
                     membershipCardCounter++;
-                else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
+                else if (relic.relicId.equals(Courier.ID) && MoreStackableRelicsInitializer.enableCourierStacking)
                     courierCounter++;
             }
 
-            if (ModInitializer.enableCourierStacking)
+            if (MoreStackableRelicsInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
                     retVal = (int)(retVal * 0.8F);
-            if (ModInitializer.enableMemCardStacking)
+            if (MoreStackableRelicsInitializer.enableMemCardStacking)
                 for (int i = 0; i < membershipCardCounter; i++)
                     retVal = (int)(retVal * 0.5F);
 
@@ -269,16 +269,16 @@ public class StackableDiscountRelics {
             int membershipCardCounter = -1;
 
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(MembershipCard.ID) && ModInitializer.enableMemCardStacking)
+                if (relic.relicId.equals(MembershipCard.ID) && MoreStackableRelicsInitializer.enableMemCardStacking)
                     membershipCardCounter++;
-                else if (relic.relicId.equals(Courier.ID) && ModInitializer.enableCourierStacking)
+                else if (relic.relicId.equals(Courier.ID) && MoreStackableRelicsInitializer.enableCourierStacking)
                     courierCounter++;
             }
 
-            if (ModInitializer.enableCourierStacking)
+            if (MoreStackableRelicsInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
                     tmpPrice *= 0.8F;
-            if (ModInitializer.enableMemCardStacking)
+            if (MoreStackableRelicsInitializer.enableMemCardStacking)
                 for (int i = 0; i < membershipCardCounter; i++)
                     tmpPrice *= 0.5F;
 

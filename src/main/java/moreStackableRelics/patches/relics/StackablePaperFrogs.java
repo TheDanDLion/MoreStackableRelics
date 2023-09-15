@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.PaperFrog;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackablePaperFrogs {
 
-    private static final RelicStrings RELIC_STIRNGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("PaperFrog"));
+    private static final RelicStrings RELIC_STIRNGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("PaperFrog"));
     private static final String[] DESCRIPTIONS = RELIC_STIRNGS.DESCRIPTIONS;
 
     public static int numFrogs = 0;
@@ -56,7 +56,7 @@ public class StackablePaperFrogs {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enablePaperFrogStacking || numFrogs == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperFrogStacking || numFrogs == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + ((int)((getMultiplier() - 1.0F) * 100.0F)) + DESCRIPTIONS[1];
         }
@@ -68,7 +68,7 @@ public class StackablePaperFrogs {
     )
     public static class ApplyAllFrogsPatch {
         public static float Postfix(float __result, VulnerablePower __instance, DamageInfo.DamageType type) {
-            if (!ModInitializer.enablePaperFrogStacking)
+            if (!MoreStackableRelicsInitializer.enablePaperFrogStacking)
                 return __result;
             if (type == DamageInfo.DamageType.NORMAL && __instance.owner != null && !__instance.owner.isPlayer) {
                 if (AbstractDungeon.player.hasRelic(PaperFrog.ID)) {

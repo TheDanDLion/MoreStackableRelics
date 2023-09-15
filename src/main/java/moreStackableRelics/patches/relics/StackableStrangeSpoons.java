@@ -17,11 +17,11 @@ import com.megacrit.cardcrawl.relics.StrangeSpoon;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableStrangeSpoons {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("StrangeSpoon"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("StrangeSpoon"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numStrangeSpoons = 0;
@@ -53,7 +53,7 @@ public class StackableStrangeSpoons {
 
     public static boolean getSpoonProc() {
         boolean proc = false;
-        if (ModInitializer.enableStrangeSpoonStacking) {
+        if (MoreStackableRelicsInitializer.enableStrangeSpoonStacking) {
             for (AbstractRelic relic : AbstractDungeon.player.relics)
                 if (relic.relicId.equals(StrangeSpoon.ID)) {
                     proc = AbstractDungeon.cardRandomRng.randomBoolean();
@@ -79,7 +79,7 @@ public class StackableStrangeSpoons {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableStrangeSpoonStacking || numStrangeSpoons == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableStrangeSpoonStacking || numStrangeSpoons == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getSpoonProcChance() + DESCRIPTIONS[1];
         }
@@ -109,7 +109,7 @@ public class StackableStrangeSpoons {
             locator = Locator.class
         )
         public static void Insert() {
-            if (ModInitializer.enableStrangeSpoonStacking)
+            if (MoreStackableRelicsInitializer.enableStrangeSpoonStacking)
                 for (AbstractRelic relic : AbstractDungeon.player.relics)
                     if (relic.relicId.equals(StrangeSpoon.ID))
                         relic.flash();

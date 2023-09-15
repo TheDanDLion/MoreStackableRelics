@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 @SpirePatch2(
     clz = RewardItem.class,
@@ -20,7 +20,7 @@ public class StackableGoldenIdols {
 
     public static int getGoldIdolBonusGold(int tmp) {
         int gold = 0;
-        if (ModInitializer.enableGoldenIdolStacking) {
+        if (MoreStackableRelicsInitializer.enableGoldenIdolStacking) {
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
                 if (relic.relicId.equals(GoldenIdol.ID)) {
                     gold += MathUtils.round(tmp * 0.25F);

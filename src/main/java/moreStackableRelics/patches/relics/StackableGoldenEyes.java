@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.GoldenEye;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 @SpirePatch2(
     clz = ScryAction.class,
@@ -15,7 +15,7 @@ import moreStackableRelics.ModInitializer;
 )
 public class StackableGoldenEyes {
     public static void Postfix(ScryAction __instance) {
-        if (!ModInitializer.enableGoldenEyeStacking)
+        if (!MoreStackableRelicsInitializer.enableGoldenEyeStacking)
             return;
         boolean first = true; // first one is proc'd already
         for (AbstractRelic relic : AbstractDungeon.player.relics)

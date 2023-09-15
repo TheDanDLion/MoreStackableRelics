@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.GoldPlatedCables;
 
 import javassist.CtBehavior;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableCables {
 
@@ -40,7 +40,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert(TriggerEndOfTurnOrbsAction __instance) {
-            if (!ModInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking)
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -73,7 +73,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking)
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -107,7 +107,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!ModInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking)
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)
                 && (AbstractDungeon.player.orbs.get(0) instanceof Dark)) {
@@ -142,7 +142,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert(AbstractPlayer __instance) {
-            if (!ModInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking)
                 return;
             if (!(__instance.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -172,7 +172,7 @@ public class StackableCables {
     )
     public static class IncreaseTriggersForStsLibPatch {
         public static void Prefix(AbstractGameAction __instance, float ___duration, AbstractOrb ___targetOrb) {
-            if (!ModInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking)
                 return;
             if (___duration == Settings.ACTION_DUR_FAST && !AbstractDungeon.player.orbs.isEmpty() && AbstractDungeon.player.orbs.get(0) == ___targetOrb) {
                 boolean first = true;

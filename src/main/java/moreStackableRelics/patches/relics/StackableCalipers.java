@@ -11,11 +11,11 @@ import com.megacrit.cardcrawl.relics.Calipers;
 
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableCalipers {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("Calipers"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("Calipers"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numCalipers = 0;
@@ -47,7 +47,7 @@ public class StackableCalipers {
         int blockLoss = 15;
         if (numCalipers > 1)
             blockLoss -= (numCalipers - 1);
-        return (ModInitializer.enableCaliperStacking ? blockLoss : 15);
+        return (MoreStackableRelicsInitializer.enableCaliperStacking ? blockLoss : 15);
     }
 
     @SpirePatch2(
@@ -56,7 +56,7 @@ public class StackableCalipers {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableCaliperStacking || numCalipers == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableCaliperStacking || numCalipers == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getCalipersBlockLoss();
         }

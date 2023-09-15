@@ -9,11 +9,11 @@ import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.OddMushroom;
 
-import moreStackableRelics.ModInitializer;
+import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableOddMushrooms {
 
-    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(ModInitializer.makeID("OddMushroom"));
+    private static final RelicStrings RELIC_STRINGS = CardCrawlGame.languagePack.getRelicStrings(MoreStackableRelicsInitializer.makeID("OddMushroom"));
     private static final String[] DESCRIPTIONS = RELIC_STRINGS.DESCRIPTIONS;
 
     public static int numMushrooms = 0;
@@ -56,7 +56,7 @@ public class StackableOddMushrooms {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !ModInitializer.enableOddMushroomStacking || numMushrooms == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableOddMushroomStacking || numMushrooms == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + ((int)(100.0F * (getMultiplier() - 1.0F))) + DESCRIPTIONS[1];
         }
@@ -68,7 +68,7 @@ public class StackableOddMushrooms {
     )
     public static class ApplyAllMushroomsPatch {
         public static float Postfix(float __result, VulnerablePower __instance, DamageInfo.DamageType type) {
-            if (!ModInitializer.enableOddMushroomStacking)
+            if (!MoreStackableRelicsInitializer.enableOddMushroomStacking)
                 return __result;
             if (type == DamageInfo.DamageType.NORMAL && AbstractDungeon.player.hasRelic("Odd Mushroom")) {
                 return __result / 1.25F * getMultiplier();
