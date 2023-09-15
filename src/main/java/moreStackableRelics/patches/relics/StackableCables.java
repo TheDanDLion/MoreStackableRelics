@@ -23,14 +23,6 @@ import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableCables {
 
-    public static void triggerOnEndOfTurn() {
-        for (AbstractRelic relic : AbstractDungeon.player.relics) {
-            if (relic.relicId.equals(GoldPlatedCables.ID)) {
-                ((AbstractOrb)AbstractDungeon.player.orbs.get(0)).onEndOfTurn();
-            }
-        }
-    }
-
     @SpirePatch2(
         clz = TriggerEndOfTurnOrbsAction.class,
         method = "update"
@@ -40,7 +32,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert(TriggerEndOfTurnOrbsAction __instance) {
-            if (!MoreStackableRelicsInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking || __instance == null || AbstractDungeon.player == null || AbstractDungeon.player.orbs == null || AbstractDungeon.player.orbs.isEmpty())
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -73,7 +65,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!MoreStackableRelicsInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking || AbstractDungeon.player == null || AbstractDungeon.player.orbs != null || AbstractDungeon.player.orbs.isEmpty())
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -107,7 +99,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!MoreStackableRelicsInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking || AbstractDungeon.player == null || AbstractDungeon.player.orbs == null || AbstractDungeon.player.orbs.isEmpty())
                 return;
             if (!(AbstractDungeon.player.orbs.get(0) instanceof EmptyOrbSlot)
                 && (AbstractDungeon.player.orbs.get(0) instanceof Dark)) {
@@ -142,7 +134,7 @@ public class StackableCables {
             locator = Locator.class
         )
         public static void Insert(AbstractPlayer __instance) {
-            if (!MoreStackableRelicsInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking || __instance == null || __instance.orbs == null || __instance.orbs.isEmpty())
                 return;
             if (!(__instance.orbs.get(0) instanceof EmptyOrbSlot)) {
                 boolean first = true;
@@ -172,7 +164,7 @@ public class StackableCables {
     )
     public static class IncreaseTriggersForStsLibPatch {
         public static void Prefix(AbstractGameAction __instance, float ___duration, AbstractOrb ___targetOrb) {
-            if (!MoreStackableRelicsInitializer.enableCableStacking)
+            if (!MoreStackableRelicsInitializer.enableCableStacking || __instance == null || ___targetOrb == null || AbstractDungeon.player != null)
                 return;
             if (___duration == Settings.ACTION_DUR_FAST && !AbstractDungeon.player.orbs.isEmpty() && AbstractDungeon.player.orbs.get(0) == ___targetOrb) {
                 boolean first = true;

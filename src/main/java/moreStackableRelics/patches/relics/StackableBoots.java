@@ -19,6 +19,8 @@ public class StackableBoots {
 
     public static void countBoots() {
         numBoots = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(Boot.ID)) {
                 numBoots++;
@@ -32,6 +34,8 @@ public class StackableBoots {
     }
 
     public static void incBoots(AbstractRelic r) {
+        if (r == null || AbstractDungeon.player == null)
+            return;
         numBoots++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -60,7 +64,7 @@ public class StackableBoots {
     )
     public static class BootDamagePatch {
         public static int Postfix(int __result, Boot __instance, DamageInfo info, int damageAmount) {
-            if (!MoreStackableRelicsInitializer.enableBootStacking)
+            if (!MoreStackableRelicsInitializer.enableBootStacking || __instance == null || info == null)
                 return __result;
             int threshold = MoreStackableRelicsInitializer.enableGigaBoot ? 5 * numBoots : 5;
             if (info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 0 && damageAmount < threshold) {

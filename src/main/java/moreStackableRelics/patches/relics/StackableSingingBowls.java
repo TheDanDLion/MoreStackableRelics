@@ -18,15 +18,15 @@ import moreStackableRelics.MoreStackableRelicsInitializer;
 public class StackableSingingBowls {
 
     public static void applySingingBowls() {
-        if (MoreStackableRelicsInitializer.enableSingingBowlStacking) {
-            for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(SingingBowl.ID)) {
-                    relic.flash();
-                    AbstractDungeon.player.increaseMaxHp(2, true);
+        if (AbstractDungeon.player != null) {
+            if (MoreStackableRelicsInitializer.enableSingingBowlStacking) {
+                for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                    if (relic.relicId.equals(SingingBowl.ID)) {
+                        relic.flash();
+                        AbstractDungeon.player.increaseMaxHp(2, true);
+                    }
                 }
-            }
-        } else {
-            if (AbstractDungeon.player.hasRelic(SingingBowl.ID)) {
+            } else if (AbstractDungeon.player.hasRelic(SingingBowl.ID)) {
                 AbstractDungeon.player.getRelic(SingingBowl.ID).flash();
                 AbstractDungeon.player.increaseMaxHp(2, true);
             }

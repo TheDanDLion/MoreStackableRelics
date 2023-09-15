@@ -22,6 +22,8 @@ public class StackablePaperCranes {
 
     public static void countCranes() {
         numCranes = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(PaperCrane.ID)) {
                 numCranes++;
@@ -35,6 +37,8 @@ public class StackablePaperCranes {
     }
 
     public static void incCranes(AbstractRelic r) {
+        if (AbstractDungeon.player == null || r == null)
+            return;
         numCranes++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -58,7 +62,7 @@ public class StackablePaperCranes {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperCraneStacking || numCranes == 1)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperCraneStacking || numCranes == 1 || __result == null)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getCurrentReduction() + DESCRIPTIONS[1];
         }
@@ -70,7 +74,7 @@ public class StackablePaperCranes {
     )
     public static class AtDamageGivePatch {
         public static float Postfix(float __result, DamageInfo.DamageType type) {
-            if (!MoreStackableRelicsInitializer.enablePaperCraneStacking)
+            if (!MoreStackableRelicsInitializer.enablePaperCraneStacking || type == null)
                 return __result;
             if (type == DamageType.NORMAL) {
                 boolean first = true;

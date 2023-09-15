@@ -24,7 +24,7 @@ public class StackableRegalPillows { // TODO: update campfire text but not reall
     )
     public static class ApplyAllRegalPillowsPatch {
         public static void Postfix(@ByRef int[] ___healAmount) {
-            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking)
+            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking || AbstractDungeon.player == null)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -46,7 +46,7 @@ public class StackableRegalPillows { // TODO: update campfire text but not reall
             locator = Locator.class
         )
         public static void Insert() {
-            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking)
+            if (!MoreStackableRelicsInitializer.enableRegalPillowStacking || AbstractDungeon.player == null)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)

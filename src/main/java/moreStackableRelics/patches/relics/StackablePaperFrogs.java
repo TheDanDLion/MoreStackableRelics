@@ -20,6 +20,8 @@ public class StackablePaperFrogs {
 
     public static void countFrogs() {
         numFrogs = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(PaperFrog.ID)) {
                 numFrogs++;
@@ -33,6 +35,8 @@ public class StackablePaperFrogs {
     }
 
     public static void incFrogs(AbstractRelic r) {
+        if (r == null || AbstractDungeon.player == null)
+            return;
         numFrogs++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -56,7 +60,7 @@ public class StackablePaperFrogs {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperFrogStacking || numFrogs == 1)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePaperFrogStacking || numFrogs == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + ((int)((getMultiplier() - 1.0F) * 100.0F)) + DESCRIPTIONS[1];
         }
@@ -68,7 +72,7 @@ public class StackablePaperFrogs {
     )
     public static class ApplyAllFrogsPatch {
         public static float Postfix(float __result, VulnerablePower __instance, DamageInfo.DamageType type) {
-            if (!MoreStackableRelicsInitializer.enablePaperFrogStacking)
+            if (!MoreStackableRelicsInitializer.enablePaperFrogStacking || __instance == null || type == null)
                 return __result;
             if (type == DamageInfo.DamageType.NORMAL && __instance.owner != null && !__instance.owner.isPlayer) {
                 if (AbstractDungeon.player.hasRelic(PaperFrog.ID)) {

@@ -28,6 +28,8 @@ public class StackableStrangeSpoons {
 
     public static void countSpoons() {
         numStrangeSpoons = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(StrangeSpoon.ID)) {
                 numStrangeSpoons++;
@@ -41,6 +43,8 @@ public class StackableStrangeSpoons {
     }
 
     public static void incSpoons(AbstractRelic r) {
+        if (r == null || AbstractDungeon.player == null)
+            return;
         numStrangeSpoons++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -79,7 +83,7 @@ public class StackableStrangeSpoons {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableStrangeSpoonStacking || numStrangeSpoons == 1)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableStrangeSpoonStacking || numStrangeSpoons == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + getSpoonProcChance() + DESCRIPTIONS[1];
         }

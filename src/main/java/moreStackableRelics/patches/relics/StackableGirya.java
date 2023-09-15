@@ -34,7 +34,7 @@ public class StackableGirya {
 
     public static boolean isButtonAdded(Girya girya) {
         boolean val = buttonAdded;
-        if (MoreStackableRelicsInitializer.enableGiryaStacking) {
+        if (MoreStackableRelicsInitializer.enableGiryaStacking && girya != null) {
             if (girya.counter > 2)
                 return true;
             buttonAdded = true;
@@ -43,7 +43,7 @@ public class StackableGirya {
     }
 
     public static void incrementAllGirya() {
-        if (!MoreStackableRelicsInitializer.enableGiryaStacking)
+        if (!MoreStackableRelicsInitializer.enableGiryaStacking || AbstractDungeon.player == null)
             return;
         boolean first = true;
         for (AbstractRelic relic : AbstractDungeon.player.relics)
@@ -69,7 +69,7 @@ public class StackableGirya {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableGiryaStacking)
+            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableGiryaStacking || __result == null)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -115,7 +115,7 @@ public class StackableGirya {
             locator = Locator.class
         )
         public static void Insert(ArrayList<AbstractCampfireOption> ___buttons) {
-            if (MoreStackableRelicsInitializer.enableGiryaStacking) {
+            if (MoreStackableRelicsInitializer.enableGiryaStacking && ___buttons != null && AbstractDungeon.player != null) {
                 if (AbstractDungeon.player.hasRelic(Girya.ID)) {
                     for (AbstractCampfireOption option : ___buttons)
                         if (option instanceof LiftOption)
@@ -158,6 +158,8 @@ public class StackableGirya {
             locator = Locator.class
         )
         public static void Insert() {
+            if (AbstractDungeon.player == null)
+                return;
             if (!MoreStackableRelicsInitializer.enableGiryaStacking) {
                 if (AbstractDungeon.player.getRelic(Girya.ID).counter > 3) {
                     AbstractDungeon.player.getRelic(Girya.ID).counter = 3;

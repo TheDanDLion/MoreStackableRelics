@@ -40,7 +40,7 @@ public class StackableShovels {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableShovelStacking)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableShovelStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -86,7 +86,7 @@ public class StackableShovels {
             locator = Locator.class
         )
         public static void Insert() {
-            if (!MoreStackableRelicsInitializer.enableShovelStacking)
+            if (!MoreStackableRelicsInitializer.enableShovelStacking || AbstractDungeon.player == null)
                 return;
             boolean first = true;
             for (AbstractRelic relic : AbstractDungeon.player.relics)

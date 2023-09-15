@@ -29,7 +29,7 @@ public class StackableWhiteBeasts {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableWhiteBeastStacking)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableWhiteBeastStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -45,7 +45,7 @@ public class StackableWhiteBeasts {
             locator = Locator.class
         )
         public static void Insert(AbstractRoom __instance) {
-            if (!MoreStackableRelicsInitializer.enableWhiteBeastStacking)
+            if (!MoreStackableRelicsInitializer.enableWhiteBeastStacking || __instance == null || AbstractDungeon.player == null)
                 return;
             int count = -1; // set count to -1 because 1 potion is made already, so first White Beast is already accounted for
             for (AbstractRelic relic : AbstractDungeon.player.relics)

@@ -27,6 +27,8 @@ public class StackablePreservedInsects {
 
     public static void countPreservedInsects() {
         numPreservedInsects = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(PreservedInsect.ID)) {
                 numPreservedInsects++;
@@ -40,6 +42,8 @@ public class StackablePreservedInsects {
     }
 
     public static void incPreservedInsects(AbstractRelic r) {
+        if (r == null || AbstractDungeon.player == null)
+            return;
         numPreservedInsects++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -63,7 +67,7 @@ public class StackablePreservedInsects {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || numPreservedInsects == 1 || !MoreStackableRelicsInitializer.enablePreservedInsectStacking)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || numPreservedInsects == 1 || !MoreStackableRelicsInitializer.enablePreservedInsectStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + Math.round((1.0F - getModifier()) * 100.0F) + DESCRIPTIONS[1];
         }
@@ -79,7 +83,7 @@ public class StackablePreservedInsects {
             localvars = {"m"}
         )
         public static void Insert(AbstractMonster m) {
-            if (!MoreStackableRelicsInitializer.enablePreservedInsectStacking)
+            if (!MoreStackableRelicsInitializer.enablePreservedInsectStacking || m == null)
                 return;
 
             m.currentHealth = (int) (m.maxHealth * getModifier());
@@ -105,7 +109,7 @@ public class StackablePreservedInsects {
             locator = Locator.class
         )
         public static void Insert(AbstractCreature __instance, @ByRef float[] scale) {
-            if (!MoreStackableRelicsInitializer.enablePreservedInsectStacking)
+            if (!MoreStackableRelicsInitializer.enablePreservedInsectStacking || __instance == null)
                 return;
             int count = -1; // scale is already accounted for first Preserved Insect so -1 will ignore first
             if (!__instance.isPlayer && AbstractDungeon.getCurrMapNode() != null && AbstractDungeon.getCurrRoom() != null && (AbstractDungeon.getCurrRoom()).eliteTrigger) {

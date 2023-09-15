@@ -42,9 +42,10 @@ public class StackablePeacePipes {
 
     public static void countPeacePipes() {
         numPeacePipes = 0;
-        for (AbstractRelic relic : AbstractDungeon.player.relics)
-            if (relic.relicId.equals(PeacePipe.ID))
-                numPeacePipes++;
+        if (AbstractDungeon.player != null)
+            for (AbstractRelic relic : AbstractDungeon.player.relics)
+                if (relic.relicId.equals(PeacePipe.ID))
+                    numPeacePipes++;
     }
 
     public static boolean isButtonAdded() {
@@ -60,7 +61,7 @@ public class StackablePeacePipes {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePeacePipeStacking)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enablePeacePipeStacking)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0];
         }
@@ -110,7 +111,7 @@ public class StackablePeacePipes {
                 return SpireReturn.Continue();
             AbstractDungeon.gridSelectScreen.anyNumber = true;
             AbstractDungeon.gridSelectScreen.open(
-                CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), numPeacePipes, (numPeacePipes == 1 ? CampfireTokeEffect.TEXT[0] : TEXT[2] + numPeacePipes + TEXT[3] + DESCRIPTIONS[1]), false, false, true, true);
+                CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), numPeacePipes, true, (numPeacePipes == 1 ? CampfireTokeEffect.TEXT[0] : TEXT[2] + numPeacePipes + TEXT[3] + DESCRIPTIONS[1]));
             return SpireReturn.Return();
         }
 

@@ -1,9 +1,7 @@
 package moreStackableRelics.patches.relics;
 
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -68,17 +66,15 @@ public class StackableToriis {
         public static int Postfix(int __result, DamageInfo info, int damageAmount) {
             if (MoreStackableRelicsInitializer.enableToriiStacking && info.owner != null && info.type != DamageInfo.DamageType.HP_LOSS && info.type != DamageInfo.DamageType.THORNS && damageAmount > 1 && damageAmount <= 5 * numToriis
                 && AbstractDungeon.player.hasRelic(Torii.ID)) {
-                boolean first = __result == 5;
-                for (AbstractRelic relic : AbstractDungeon.player.relics)
-                    if (relic.relicId.equals(Torii.ID)) {
-                        if (first)
-                            first = false;
-                        else {
-                            relic.flash();
-                            AbstractDungeon.actionManager.addToBottom(new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, relic));
+                    boolean first = __result == 5;
+                    for (AbstractRelic relic : AbstractDungeon.player.relics)
+                        if (relic.relicId.equals(Torii.ID)) {
+                            if (first)
+                                first = false;
+                            else
+                                relic.flash();
                         }
-                    }
-                return 1;
+                    return 1;
             }
             return __result;
         }

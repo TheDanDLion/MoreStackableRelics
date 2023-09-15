@@ -15,7 +15,7 @@ import moreStackableRelics.MoreStackableRelicsInitializer;
 )
 public class StackableGoldenEyes {
     public static void Postfix(ScryAction __instance) {
-        if (!MoreStackableRelicsInitializer.enableGoldenEyeStacking)
+        if (!MoreStackableRelicsInitializer.enableGoldenEyeStacking || __instance == null)
             return;
         boolean first = true; // first one is proc'd already
         for (AbstractRelic relic : AbstractDungeon.player.relics)

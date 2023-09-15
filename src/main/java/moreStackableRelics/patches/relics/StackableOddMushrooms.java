@@ -20,6 +20,8 @@ public class StackableOddMushrooms {
 
     public static void countMushrooms() {
         numMushrooms = 0;
+        if (AbstractDungeon.player == null)
+            return;
         for (AbstractRelic relic : AbstractDungeon.player.relics) {
             if (relic.relicId.equals(OddMushroom.ID)) {
                 numMushrooms++;
@@ -33,6 +35,8 @@ public class StackableOddMushrooms {
     }
 
     public static void incMushrooms(AbstractRelic r) {
+        if (AbstractDungeon.player == null || r == null)
+            return;
         numMushrooms++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;
@@ -56,7 +60,7 @@ public class StackableOddMushrooms {
     )
     public static class AmendDescriptionPatch {
         public static String Postfix(String __result) {
-            if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableOddMushroomStacking || numMushrooms == 1)
+            if (AbstractDungeon.player == null || __result == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableOddMushroomStacking || numMushrooms == 1)
                 return __result;
             return __result + " NL NL " + DESCRIPTIONS[0] + ((int)(100.0F * (getMultiplier() - 1.0F))) + DESCRIPTIONS[1];
         }
@@ -68,7 +72,7 @@ public class StackableOddMushrooms {
     )
     public static class ApplyAllMushroomsPatch {
         public static float Postfix(float __result, VulnerablePower __instance, DamageInfo.DamageType type) {
-            if (!MoreStackableRelicsInitializer.enableOddMushroomStacking)
+            if (!MoreStackableRelicsInitializer.enableOddMushroomStacking || __instance == null || type == null)
                 return __result;
             if (type == DamageInfo.DamageType.NORMAL && AbstractDungeon.player.hasRelic("Odd Mushroom")) {
                 return __result / 1.25F * getMultiplier();

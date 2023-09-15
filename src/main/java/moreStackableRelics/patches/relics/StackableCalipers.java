@@ -21,6 +21,8 @@ public class StackableCalipers {
     public static int numCalipers = 0;
 
     public static void countCalipers() {
+        if (AbstractDungeon.player == null)
+            return;
         numCalipers = 0;
         for (AbstractRelic relic : AbstractDungeon.player.relics)
             if (relic.relicId.equals(Calipers.ID))
@@ -33,6 +35,8 @@ public class StackableCalipers {
     }
 
     public static void incCalipers(AbstractRelic r) {
+        if (r == null || AbstractDungeon.player == null)
+            return;
         numCalipers++;
         r.description = r.getUpdatedDescription();
         r.tips.get(0).body = r.description;

@@ -53,8 +53,10 @@ public class StackableDreamCatchers {
             locator = Locator.class
         )
         public static void Insert(AbstractRoom __instance) {
-            if (!MoreStackableRelicsInitializer.enableDreamCatcherStacking || counter == 0 || !inChain || choosing || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD || !(__instance instanceof RestRoom))
-                return;
+            if (!MoreStackableRelicsInitializer.enableDreamCatcherStacking || counter == 0 || !inChain
+                || choosing || AbstractDungeon.screen == AbstractDungeon.CurrentScreen.CARD_REWARD
+                || __instance == null || !(__instance instanceof RestRoom))
+                    return;
             MoreStackableRelicsInitializer.logger.info("Counter: " + counter);
             counter--;
             AbstractDungeon.overlayMenu.proceedButton.hideInstantly();
