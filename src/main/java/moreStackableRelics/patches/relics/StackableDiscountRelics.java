@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StorePotion;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 
-import basemod.ReflectionHacks;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
@@ -88,7 +87,7 @@ public class StackableDiscountRelics {
         return (int)((1.0F - discount) * 100.0F);
     }
 
-    public static int getPurgeCost(int purgeCost) {
+    public static int getPurgeCost(int purgeCost) { // TODO: verify calculation
         if (ModInitializer.enableMemCardStacking) {
             float multiplier = 1.0f;
             for (int i = 0; i < numMembershipCard; i++)
@@ -96,6 +95,12 @@ public class StackableDiscountRelics {
             for (int i = 0; i <numCourier; i++)
                 multiplier *= 0.8F;
             return MathUtils.round(purgeCost * multiplier);
+        } else if (AbstractDungeon.player.hasRelic(Courier.ID) && AbstractDungeon.player.hasRelic(MembershipCard.ID)) {
+            return MathUtils.round(purgeCost * 0.8F * 0.5F);
+        } else if (AbstractDungeon.player.hasRelic(Courier.ID)) {
+            return MathUtils.round(purgeCost * 0.8F);
+        } else if (AbstractDungeon.player.hasRelic(MembershipCard.ID)) {
+            return MathUtils.round(purgeCost * 0.5F);
         }
         return purgeCost;
     }
@@ -133,6 +138,8 @@ public class StackableDiscountRelics {
             locator = Locator.class
         )
         public static void Insert(ShopScreen __instance) {
+            if (__instance == null || AbstractDungeon.player == null)
+                return;
 
             int courierCounter = -1; // set to negative one since first one is always being proc'd
             int membershipCardCounter = -1;
@@ -188,6 +195,9 @@ public class StackableDiscountRelics {
     )
     public static class GetNewRelicPatch {
         public static void Postfix(StorePotion r) {
+            if (r == null || AbstractDungeon.shopScreen == null || AbstractDungeon.player == null)
+                return;
+
             int retVal = r.price;
             int courierCounter = -1; // set to negative one since first one is always being proc'd
             int membershipCardCounter = -1;
@@ -199,13 +209,16 @@ public class StackableDiscountRelics {
                     courierCounter++;
             }
 
-            if (ModInitializer.enableMemCardStacking)
-                for (int i = 0; i < courierCounter; i++)
-                    retVal = ReflectionHacks.privateMethod(ShopScreen.class, "applyDiscountToRelic", Integer.class, Float.class).invoke(r, retVal, 0.8F);
-            if (ModInitializer.enableCourierStacking)
-                for (int i = 0; i < membershipCardCounter; i++)
-                    retVal = ReflectionHacks.privateMethod(ShopScreen.class, "applyDiscountToRelic", Integer.class, Float.class).invoke(r, retVal, 0.5F);
-
+            try {
+                if (ModInitializer.enableMemCardStacking)
+                    for (int i = 0; i < courierCounter; i++)
+                        retVal = (int)(retVal * 0.8F);
+                if (ModInitializer.enableCourierStacking)
+                    for (int i = 0; i < membershipCardCounter; i++)
+                        retVal = (int)(retVal * 0.5F);
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
             r.price = retVal;
         }
     }
@@ -217,6 +230,9 @@ public class StackableDiscountRelics {
     )
     public static class GetNewPotionPatch {
         public static void Postfix(StoreRelic r) {
+            if (r == null || AbstractDungeon.shopScreen == null || AbstractDungeon.player == null)
+                return;
+
             int retVal = r.price;
             int courierCounter = -1; // set to negative one since first one is always being proc'd
             int membershipCardCounter = -1;
@@ -230,10 +246,10 @@ public class StackableDiscountRelics {
 
             if (ModInitializer.enableCourierStacking)
                 for (int i = 0; i < courierCounter; i++)
-                    retVal = ReflectionHacks.privateMethod(ShopScreen.class, "applyDiscountToRelic", Integer.class, Float.class).invoke(r, retVal, 0.8F);
+                    retVal = (int)(retVal * 0.8F);
             if (ModInitializer.enableMemCardStacking)
                 for (int i = 0; i < membershipCardCounter; i++)
-                    retVal = ReflectionHacks.privateMethod(ShopScreen.class, "applyDiscountToRelic", Integer.class, Float.class).invoke(r, retVal, 0.5F);
+                    retVal = (int)(retVal * 0.5F);
 
             r.price = retVal;
         }
@@ -245,6 +261,9 @@ public class StackableDiscountRelics {
     )
     public static class SetPricePatch {
         public static void Postfix(AbstractCard card) {
+            if (card == null || AbstractDungeon.player == null)
+                return;
+
             int tmpPrice = card.price;
             int courierCounter = -1; // set to negative one since first one is always being proc'd
             int membershipCardCounter = -1;
