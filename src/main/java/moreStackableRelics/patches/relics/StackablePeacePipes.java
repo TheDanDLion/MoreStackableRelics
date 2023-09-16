@@ -107,11 +107,11 @@ public class StackablePeacePipes {
             locator = Locator.class
         )
         public static SpireReturn<Void> Insert() {
-            if (!MoreStackableRelicsInitializer.enablePeacePipeStacking)
+            if (!MoreStackableRelicsInitializer.enablePeacePipeStacking || numPeacePipes == 1)
                 return SpireReturn.Continue();
-            AbstractDungeon.gridSelectScreen.anyNumber = true;
             AbstractDungeon.gridSelectScreen.open(
                 CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), numPeacePipes, true, (numPeacePipes == 1 ? CampfireTokeEffect.TEXT[0] : TEXT[2] + numPeacePipes + TEXT[3] + DESCRIPTIONS[1]));
+            AbstractDungeon.gridSelectScreen.forPurge = true;
             return SpireReturn.Return();
         }
 

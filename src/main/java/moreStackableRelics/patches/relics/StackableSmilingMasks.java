@@ -4,7 +4,6 @@ import com.evacipated.cardcrawl.modthespire.lib.LineFinder;
 import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -16,8 +15,6 @@ import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StoreRelic;
 
 import javassist.CtBehavior;
-import javassist.expr.ExprEditor;
-import javassist.expr.FieldAccess;
 import moreStackableRelics.MoreStackableRelicsInitializer;
 
 public class StackableSmilingMasks {
@@ -56,6 +53,10 @@ public class StackableSmilingMasks {
             }
     }
 
+    public static int getCurrentPurgeCost() {
+        return 50 - (5 * (numMasks - 1));
+    }
+
     @SpirePatch2(
         clz = SmilingMask.class,
         method = "getUpdatedDescription"
@@ -68,29 +69,25 @@ public class StackableSmilingMasks {
         }
     }
 
-    public static int getCurrentPurgeCost() {
-        return 50 - (5 * (numMasks - 1));
-    }
-
     @SpirePatch2(
         clz = StoreRelic.class,
         method = "purchaseRelic"
     )
     public static class RecalculatePurgeCostOnRelicPurchasePatch {
-        @SpireInstrumentPatch
-        public static ExprEditor Editor() {
-            return new ExprEditor() {
-                @Override
-                public void edit(FieldAccess f) {
-                    try {
-                        if (f.getFieldName().equals("actualPurgeCost")) {
-                            f.replace("{ $_ = moreStackableRelics.patches.relics.StackableSmilingMasks.getCurrentPurgeCost(); }");
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
+        @SpireInsertPatch(
+            locator = Locator.class
+        )
+        public static void Insert(StoreRelic __instance) {
+            if (MoreStackableRelicsInitializer.enableSmilingMaskStacking && AbstractDungeon.player != null && AbstractDungeon.player.hasRelic(SmilingMask.ID))
+                ShopScreen.actualPurgeCost = getCurrentPurgeCost();
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            @Override
+            public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ShopScreen.class, "playBuySfx");
+                return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
+            }
         }
     }
 

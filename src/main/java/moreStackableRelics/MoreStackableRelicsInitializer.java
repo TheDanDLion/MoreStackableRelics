@@ -619,7 +619,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableSingingBowlStackingButton = new ModLabeledToggleButton("Enable Singing Bowl Stacking",
+        ModLabeledToggleButton enableSingingBowlStackingButton = new ModLabeledToggleButton("Singing Bowl Stacking",
                 725.0F, 250.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableSingingBowlStacking,
                 settingsPanel,
@@ -715,7 +715,7 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableWhiteBeastStackingButton = new ModLabeledToggleButton("Enable White Beast Stacking",
+        ModLabeledToggleButton enableWhiteBeastStackingButton = new ModLabeledToggleButton("White Beast Stacking",
                 1100.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableWhiteBeastStacking,
                 settingsPanel,

@@ -24,13 +24,12 @@ public class StackableLizardTails {
     public static SpireReturn<Void> Insert(AbstractPlayer __instance) {
         if (MoreStackableRelicsInitializer.enableLizardTailStacking) {
             for (AbstractRelic relic : __instance.relics) {
-                if (relic instanceof LizardTail && relic.counter != -1) {
+                if (relic.relicId.equals(LizardTail.ID) && relic.counter == -1) {
                     __instance.currentHealth = 0;
                     relic.onTrigger();
-                    break;
+                    return SpireReturn.Return();
                 }
             }
-            return SpireReturn.Return();
         }
         return SpireReturn.Continue();
     }
@@ -38,7 +37,7 @@ public class StackableLizardTails {
     private static class Locator extends SpireInsertLocator {
         @Override
         public int[] Locate(CtBehavior ctBehavior) throws Exception {
-            return LineFinder.findInOrder(ctBehavior, new Matcher.TypeCastMatcher("LizardTail"));
+            return LineFinder.findInOrder(ctBehavior, new Matcher.MethodCallMatcher(AbstractPlayer.class, "getRelic"));
         }
     }
 }

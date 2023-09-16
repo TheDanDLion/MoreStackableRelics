@@ -50,8 +50,8 @@ public class StackableMeatOnTheBones {
             return new ExprEditor() {
                 public void edit(MethodCall m) {
                     try {
-                        if (m.getMethodName().equals("getRelic")) {
-                            m.replace("{ moreStackableRelics.patches.relics.StackableMeatOnTheBones.getMeatOnTheBones(); }");
+                        if (m.getMethodName().equals("onTrigger")) {
+                            m.replace("{ moreStackableRelics.patches.relics.StackableMeatOnTheBones.triggerAllMeats(); }");
                         }
                     } catch (Exception e) {
                         e.printStackTrace();

@@ -33,7 +33,7 @@ public class StackableWingBoots {
                         if (relic.relicId.equals(WingBoots.ID)) {
                             if (first) {
                                 first = false;
-                            } else {
+                            } else if (relic.counter > 0) {
                                 __result = true;
                                 break;
                             }
@@ -60,6 +60,8 @@ public class StackableWingBoots {
                     if (relic.relicId.equals(WingBoots.ID)) {
                         if (first) {
                             first = false;
+                            if (relic.counter > 0)
+                                break;
                         } else if (relic.counter > 0) {
                             relic.counter--;
                             if (relic.counter <= 0)

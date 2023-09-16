@@ -3,7 +3,8 @@
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Increases the damage threshold by 5. Current Threshold: #b"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Wheenver you would deal #b",
+      " or less unblocked attack damage, increase it to #b"
     ]
   },
   "moreStackableRelics:Calipers": {

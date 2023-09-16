@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -28,13 +29,13 @@ public class StackableOmamoris {
             locator = Locator.class
         )
         public static void Insert(FastCardObtainEffect __instance) {
-            if (MoreStackableRelicsInitializer.enableOmamoriStacking) {
+            if (MoreStackableRelicsInitializer.enableOmamoriStacking && !__instance.isDone) {
                 boolean first = true;
                 for (AbstractRelic relic : AbstractDungeon.player.relics) {
                     if (relic.relicId.equals(Omamori.ID)) {
                         if (first) {
                             first = false;
-                        } else {
+                        } else if (relic.counter != 0) {
                             ((Omamori)relic).use();
                             __instance.duration = 0.0F;
                             __instance.isDone = true;
@@ -55,20 +56,21 @@ public class StackableOmamoris {
 
     @SpirePatch2(
         clz = ShowCardAndObtainEffect.class,
-        method = SpirePatch.CONSTRUCTOR
+        method = SpirePatch.CONSTRUCTOR,
+        paramtypez = {AbstractCard.class, float.class, float.class, boolean.class}
     )
     public static class CheckOtherOmamorisPatch {
         @SpireInsertPatch(
             locator = Locator.class
         )
         public static void Insert(ShowCardAndObtainEffect __instance, boolean convergeCards) {
-            if (MoreStackableRelicsInitializer.enableOmamoriStacking) {
+            if (MoreStackableRelicsInitializer.enableOmamoriStacking && !__instance.isDone) {
                 boolean first = true;
                 for (AbstractRelic relic : AbstractDungeon.player.relics) {
                     if (relic.relicId.equals(Omamori.ID)) {
                         if (first) {
                             first = false;
-                        } else {
+                        } else if (relic.counter != 0) {
                             ((Omamori)relic).use();
                             __instance.duration = 0.0F;
                             __instance.isDone = true;

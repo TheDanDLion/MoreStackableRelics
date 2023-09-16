@@ -54,7 +54,8 @@ public class StackableBoots {
         public static String Postfix(String __result) {
             if (AbstractDungeon.player == null || DESCRIPTIONS == null || !MoreStackableRelicsInitializer.enableBootStacking || numBoots == 1)
                 return __result;
-            return __result + " NL NL " + DESCRIPTIONS[0] + (numBoots * 5);
+            int threshold = MoreStackableRelicsInitializer.enableGigaBoot ? (5 * numBoots) - 1 : 4;
+            return __result + " NL NL " + DESCRIPTIONS[0] + threshold + DESCRIPTIONS[1] + (numBoots * 5) + ".";
         }
     }
 
