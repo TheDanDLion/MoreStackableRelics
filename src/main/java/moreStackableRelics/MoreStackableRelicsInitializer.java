@@ -93,6 +93,7 @@ public class MoreStackableRelicsInitializer implements
     public static final String ENABLE_SHOVEL_STACKING = "shovel";
     public static final String ENABLE_SMILING_MASK_STACKING = "smilingMask";
     public static final String ENABLE_SNECKO_EYE_STACKING = "sneckoEye";
+    public static final String ENABLE_SNECKO_SKULL_STACKING = "sneckoSkull";
     public static final String ENABLE_SINGING_BOWL_STACKING = "singingBowl";
     public static final String ENABLE_STRANGE_SPOON_STACKING = "strangeSpoon";
     public static final String ENABLE_TINY_CHEST_STACKING = "tinyChest";
@@ -122,6 +123,7 @@ public class MoreStackableRelicsInitializer implements
     public static boolean enableShovelStacking = true;
     public static boolean enableSmilingMaskStacking = true;
     public static boolean enableSneckoEyeStacking = true;
+    public static boolean enableSneckoSkullStacking = true;
     public static boolean enableSingingBowlStacking = true;
     public static boolean enableStrangeSpoonStacking = true;
     public static boolean enableTinyChestStacking = true;
@@ -173,6 +175,7 @@ public class MoreStackableRelicsInitializer implements
         moreStackableRelicsProperties.setProperty(ENABLE_SHOVEL_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_SMILING_MASK_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_SNECKO_EYE_STACKING, "TRUE");
+        moreStackableRelicsProperties.setProperty(ENABLE_SNECKO_SKULL_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_SINGING_BOWL_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_STRANGE_SPOON_STACKING, "TRUE");
         moreStackableRelicsProperties.setProperty(ENABLE_TINY_CHEST_STACKING, "TRUE");
@@ -206,6 +209,7 @@ public class MoreStackableRelicsInitializer implements
             enableShovelStacking = config.getBool(ENABLE_SHOVEL_STACKING);
             enableSmilingMaskStacking = config.getBool(ENABLE_SMILING_MASK_STACKING);
             enableSneckoEyeStacking = config.getBool(ENABLE_SNECKO_EYE_STACKING);
+            enableSneckoSkullStacking = config.getBool(ENABLE_SNECKO_SKULL_STACKING);
             enableSingingBowlStacking = config.getBool(ENABLE_SINGING_BOWL_STACKING);
             enableStrangeSpoonStacking = config.getBool(ENABLE_STRANGE_SPOON_STACKING);
             enableTinyChestStacking = config.getBool(ENABLE_TINY_CHEST_STACKING);
@@ -667,8 +671,24 @@ public class MoreStackableRelicsInitializer implements
                 e.printStackTrace();
             }
         });
-        ModLabeledToggleButton enableStrangeSpoonStackingButton = new ModLabeledToggleButton("Strange Spoon Stacking",
+        ModLabeledToggleButton enableSneckoSkullStackingButton = new ModLabeledToggleButton("Snecko Skull Stacking",
                 1100.0F, 650.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                enableSneckoSkullStacking,
+                settingsPanel,
+                (label) -> {},
+                (button) -> {
+            enableSneckoSkullStacking = button.enabled;
+            try {
+                SpireConfig config = new SpireConfig("moreStackableRelics", "moreStackableRelicsConfig",
+                        moreStackableRelicsProperties);
+                config.setBool(ENABLE_SNECKO_SKULL_STACKING, enableSneckoSkullStacking);
+                config.save();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        ModLabeledToggleButton enableStrangeSpoonStackingButton = new ModLabeledToggleButton("Strange Spoon Stacking",
+                1100.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableStrangeSpoonStacking,
                 settingsPanel,
                 (label) -> {},
@@ -684,7 +704,7 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableTinyChestStackingButton = new ModLabeledToggleButton("Tiny Chest Stacking",
-                1100.0F, 600.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                1100.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableTinyChestStacking,
                 settingsPanel,
                 (label) -> {},
@@ -700,7 +720,7 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableToriiStackingButton = new ModLabeledToggleButton("Torii Stacking",
-                1100.0F, 550.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                1100.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableToriiStacking,
                 settingsPanel,
                 (label) -> {},
@@ -716,7 +736,7 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableWhiteBeastStackingButton = new ModLabeledToggleButton("White Beast Stacking",
-                1100.0F, 500.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                1100.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableWhiteBeastStacking,
                 settingsPanel,
                 (label) -> {},
@@ -732,7 +752,7 @@ public class MoreStackableRelicsInitializer implements
             }
         });
         ModLabeledToggleButton enableWingBootStackingButton = new ModLabeledToggleButton("Winged Boots Stacking",
-                1100.0F, 450.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
+                1100.0F, 400.0F, Settings.CREAM_COLOR, FontHelper.charDescFont,
                 enableWingBootStacking,
                 settingsPanel,
                 (label) -> {},
@@ -772,6 +792,7 @@ public class MoreStackableRelicsInitializer implements
         settingsPanel.addUIElement(enableSingingBowlStackingButton);
         settingsPanel.addUIElement(enableSmilingMaskStackingButton);
         settingsPanel.addUIElement(enableSneckoEyeStackingButton);
+        settingsPanel.addUIElement(enableSneckoSkullStackingButton);
         settingsPanel.addUIElement(enableStrangeSpoonStackingButton);
         settingsPanel.addUIElement(enableTinyChestStackingButton);
         settingsPanel.addUIElement(enableToriiStackingButton);
