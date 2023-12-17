@@ -3,7 +3,7 @@
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Wheenver you would deal #b",
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Whenever you would deal #b",
       " or less unblocked attack damage, increase it to #b"
     ]
   },
@@ -11,15 +11,15 @@
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Reduces block lost by 1. NL Current Block Loss: #b"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Reduces block lost at the end of the turn by 1. NL Current loss: #b"
     ]
   },
   "moreStackableRelics:DiscountRelics": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Applies the discount again. NL Total Discount: #b",
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Cuts the cost in half again. NL Total Discount: #b",
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Applies the discount again. NL Total discount: #b",
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Cuts the cost in half again. NL Total discount: #b",
       "%"
     ]
   },
@@ -30,32 +30,39 @@
       "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Only one button will appear at campfires. Lifting will increment all Girya instead of just one."
     ]
   },
+  "moreStackableRelics:IceCream": {
+    "NAME": "",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] For each Ice Cream, gain one turn's worth of energy at the start of each turn."
+    ]
+  },
   "moreStackableRelics:OddMushroom": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further reduces damage taken while Vulnerable. NL Current Damage Multiplier from Vulnerable: #b", "%"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further reduces damage taken while vulnerable. NL Current Damage multiplier from vulnerable: #b", "%"
     ]
   },
   "moreStackableRelics:PaperCrane": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases effectiveness of Weakness. NL Current Damage Reduction from Weakness: #b", "%"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases effectiveness of weakness. NL Current damage reduction from weakness: #b", "%"
     ]
   },
   "moreStackableRelics:PaperFrog": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases effectiveness of Vulnerable. NL Current Damage Gain: #b", "%"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases effectiveness of vulnerable on enemies. NL Current damage gain: #b", "%"
     ]
   },
   "moreStackableRelics:PeacePipe": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Only one button will appear at campfires. Number of card removals increases by 1 per pipe.",
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Only one button will appear at campfires. Number of card removals increases by 1 per extra pipe.",
       "remove."
     ]
   },
@@ -63,7 +70,7 @@
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further reduces size and health of enemy. NL Current HP reduction: #b", "%"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further reduces the size and health of enemies in elite combats. NL Current HP reduction: #b", "%"
     ]
   },
   "moreStackableRelics:Shovel": {
@@ -91,21 +98,21 @@
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases chance of a card not being exhausted. NL Current Chance: #b", "%"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Further increases chance of a card not being exhausted. NL Current chance: #b", "%"
     ]
   },
   "moreStackableRelics:Torii": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Increases damage threshold by 5. Current Damage Threshold: #b"
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Increases damage threshold by 5. Current damage threshold: #b"
     ]
   },
   "moreStackableRelics:WhiteBeast": {
     "NAME": "",
     "FLAVOR": "",
     "DESCRIPTIONS": [
-      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Adds 1 potion to the rewards at the end of combat."
+      "[#2aecd7]More [#2aecd7]Stackable [#2aecd7]Relics.[] Adds 1 extra potion to the rewards screen at the end of combat."
     ]
   }
 }

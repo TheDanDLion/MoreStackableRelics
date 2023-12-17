@@ -73,8 +73,8 @@ public class StackablePaperCranes {
         method = "atDamageGive"
     )
     public static class AtDamageGivePatch {
-        public static float Postfix(float __result, DamageInfo.DamageType type) {
-            if (!MoreStackableRelicsInitializer.enablePaperCraneStacking || type == null)
+        public static float Postfix(WeakPower __instance, float __result, DamageInfo.DamageType type) {
+            if (!MoreStackableRelicsInitializer.enablePaperCraneStacking || type == null || __instance.owner.isPlayer)
                 return __result;
             if (type == DamageType.NORMAL) {
                 boolean first = true;

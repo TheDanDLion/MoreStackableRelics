@@ -20,12 +20,14 @@ public class StackableGoldenIdols {
 
     public static int getGoldIdolBonusGold(int tmp) {
         int gold = 0;
+        float mult = 0.0F;
         if (MoreStackableRelicsInitializer.enableGoldenIdolStacking) {
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
                 if (relic.relicId.equals(GoldenIdol.ID)) {
-                    gold += MathUtils.round(tmp * 0.25F);
+                    mult += 0.25F;
                 }
             }
+            gold += MathUtils.round(tmp * mult);
         } else {
             gold = MathUtils.round(tmp * 0.25F);
         }
