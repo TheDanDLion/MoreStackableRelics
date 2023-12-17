@@ -86,6 +86,7 @@
                         <configuration>
                             <target>
                                 <copy file="target/MoreStackableRelics.jar" tofile="/home/dandy/.steam/steam/steamapps/common/SlayTheSpire/mods/MoreStackableRelics.jar"/>
+                                <copy file="target/MoreStackableRelics.jar" tofile="/home/dandy/repos/sts/sts-uploads/StackableCables/content/MoreStackableRelics.jar"/>
                             </target>
                         </configuration>
                         <goals>
