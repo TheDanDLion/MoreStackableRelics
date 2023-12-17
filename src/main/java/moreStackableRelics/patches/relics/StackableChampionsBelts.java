@@ -25,13 +25,6 @@ public class StackableChampionsBelts {
         locator = Locator.class
     )
     public static void Insert(ApplyPowerAction __instance, AbstractPower ___powerToApply) {
-        MoreStackableRelicsInitializer.logger.info("HERE");
-        MoreStackableRelicsInitializer.logger.info(MoreStackableRelicsInitializer.enableChampBeltStacking);
-        MoreStackableRelicsInitializer.logger.info(__instance == null);
-        MoreStackableRelicsInitializer.logger.info(___powerToApply == null);
-        MoreStackableRelicsInitializer.logger.info(__instance.target != null);
-        MoreStackableRelicsInitializer.logger.info(__instance.source != null);
-        MoreStackableRelicsInitializer.logger.info(__instance.source.isPlayer);
         if (!MoreStackableRelicsInitializer.enableChampBeltStacking || __instance == null || ___powerToApply == null || __instance.target == null)
             return;
         if (__instance.source != null && __instance.source.isPlayer && __instance.target != __instance.source

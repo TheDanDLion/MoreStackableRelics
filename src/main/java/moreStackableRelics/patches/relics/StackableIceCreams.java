@@ -5,8 +5,10 @@ import com.evacipated.cardcrawl.modthespire.lib.Matcher;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertLocator;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -35,7 +37,7 @@ public class StackableIceCreams {
     }
 
     @SpirePatch2(
-        clz = IceCream.class,
+        clz = EnergyManager.class,
         method = "recharge"
     )
     public static class GainStackedEnergyPatch {
@@ -43,26 +45,28 @@ public class StackableIceCreams {
             locator = Locator.class
         )
         public static void Insert() {
-            boolean first = true;
-            int energyGain = 0;
-            for (AbstractRelic relic : AbstractDungeon.player.relics) {
-                if (relic.relicId.equals(IceCream.ID)) {
-                    if (first) {
-                        first = false;
-                    } else {
-                        relic.flash();
-                        EnergyPanel.addEnergy(EnergyPanel.totalCount);
-                        energyGain += EnergyPanel.totalCount;
+            if (MoreStackableRelicsInitializer.enableIceCreamStacking) {
+                boolean first = true;
+                int energyGain = 0;
+                for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                    if (relic.relicId.equals(IceCream.ID)) {
+                        if (first) {
+                            first = false;
+                        } else {
+                            relic.flash();
+                            EnergyPanel.addEnergy(AbstractDungeon.player.energy.energyMaster);
+                            energyGain += AbstractDungeon.player.energy.energyMaster;
+                        }
                     }
                 }
+                AbstractDungeon.actionManager.updateEnergyGain(energyGain);
             }
-            AbstractDungeon.actionManager.updateEnergyGain(energyGain);
         }
 
         private static class Locator extends SpireInsertLocator {
             @Override
             public int[] Locate(CtBehavior ctMethodToPatch) throws Exception {
-                Matcher finalMatcher = new Matcher.ConstructorCallMatcher(RelicAboveCreatureAction.class);
+                Matcher finalMatcher = new Matcher.NewExprMatcher(RelicAboveCreatureAction.class);
                 return LineFinder.findInOrder(ctMethodToPatch, finalMatcher);
             }
         }
