@@ -1,5 +1,5 @@
 ---
-name: Custom issue template
+name: " Mod Compatibility Request "
 about: Request that this mod be compatible with another mod
 title: ''
 labels: compatibility
