@@ -8,6 +8,7 @@ import basemod.interfaces.PostCreateStartingRelicsSubscriber;
 import basemod.interfaces.PostInitializeSubscriber;
 import basemod.interfaces.RelicGetSubscriber;
 import moreStackableRelics.patches.relics.RelicHooks;
+import moreStackableRelics.patches.relics.RelicId;
 import moreStackableRelics.patches.relics.StackableBoots;
 import moreStackableRelics.patches.relics.StackableCalipers;
 import moreStackableRelics.patches.relics.StackableDiscountRelics;
@@ -853,6 +854,12 @@ public class MoreStackableRelicsInitializer implements
 
     @Override
     public void receiveRelicGet(AbstractRelic relic) {
+        // we need to keep track of the relics using a unique id in case this function gets called
+        // multiple times, otherwise the relic can increase in power unintentionally
+        if (RelicId.isRegistered(relic))
+            return;
+        RelicId.register(relic);
+
         if (RelicHooks.losingRelic)
             return;
         if (relic.relicId.equals(Boot.ID))
